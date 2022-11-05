@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Posts from "./components/Posts";
 import axios from "axios";
 
 
@@ -21,8 +22,9 @@ function App() {
 
   console.log(posts);
   return (
-    <div className="container">
-      <h2>Let's get started!</h2>
+    <div className="container mt-5">
+      <h2 className="text-primary mb-3">React Front-end Pagination</h2>
+      <Posts posts={posts} loading={loading} />
     </div>
   );
 }
