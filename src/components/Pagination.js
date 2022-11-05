@@ -1,13 +1,18 @@
 import React from 'react'
 
-const Pagination = ({ postsPerPage, totalPosts, paginate,currentPage }) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
+
+  const lastPageNumber = Math.ceil(totalPosts/postsPerPage);  
+  const nextPage = currentPage+1;
+  const previousPage = currentPage-1;
+
   const changePageHandler = (numb) =>{
     //console.log(numb);
     if (numb < 1){
         numb = 1;
     }
-    if (numb > Math.ceil(totalPosts/postsPerPage)){
-        numb = Math.ceil(totalPosts/postsPerPage);
+    if (numb > lastPageNumber){
+        numb = lastPageNumber;
     }
     //console.log(numb);
     paginate(numb);
@@ -15,7 +20,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate,currentPage }) => {
 
   const pageNumbers = [];      
 
-  for (let i =1; i<= Math.ceil(totalPosts/postsPerPage); i++){
+  for (let i =1; i<=lastPageNumber; i++){
     pageNumbers.push(i);
   }
   return (
@@ -27,7 +32,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate,currentPage }) => {
             </a>    
         </li>
         <li key={Math.random()} className="page-item">
-            <a href='!#' className='page-link' onClick={ () => changePageHandler(currentPage-1) }>
+            <a href='!#' className='page-link' onClick={ () => changePageHandler(previousPage) }>
                 ⟨   
             </a>          
         </li>
@@ -41,7 +46,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate,currentPage }) => {
             ))}
 
         <li key={Math.random()} className="page-item">
-            <a href='!#' className='page-link' onClick={ () => changePageHandler(currentPage+1) }>
+            <a href='!#' className='page-link' onClick={ () => changePageHandler(nextPage) }>
                 ⟩
             </a>              
         </li>
