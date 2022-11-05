@@ -20,11 +20,16 @@ function App() {
     fetchPosts();
   },[]);
 
-  console.log(posts);
+  // Get current post
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost) ;
+  
+  
   return (
     <div className="container mt-5">
       <h2 className="text-primary mb-3">React Front-end Pagination</h2>
-      <Posts posts={posts} loading={loading} />
+      <Posts posts={currentPosts} loading={loading} />
     </div>
   );
 }
