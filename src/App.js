@@ -38,7 +38,8 @@ function App() {
       <Pagination 
         postsPerPage={postsPerPage} 
         totalPosts={posts.length}
-        paginate={paginateHandler}/>
+        paginate={paginateHandler}
+        currentPage={currentPage}/>
     </div>
   );
 }
